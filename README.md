@@ -5,6 +5,37 @@
 
 ---
 
+## 🧠 Project Abstract & Key Results
+
+This project implements an FPGA-accelerated Sign Language Recognition inference pipeline on the K5 / SLRX platform.  
+The system receives a sign-language image, processes it through convolution, pooling, fully connected layers, and final ArgMax classification, and outputs the detected text.
+
+The main objective was to reduce inference latency by accelerating the compute-heavy neural-network stages in hardware, while preserving full functional correctness on both simulation and real FPGA execution.
+
+### Key Results
+
+| Metric | Result |
+|---|---:|
+| Simulation success rate | 100% |
+| Simulation detected text | `we are the champions` |
+| Simulation single-inference latency | 3,106 cycles |
+| FPGA success rate | 100% |
+| FPGA detected text | `have a great weekend` |
+| FPGA single-inference latency | 3,098 cycles |
+| SLRX synthesis logic elements | 15,075 |
+| SLRX synthesis achieved frequency | 51.46 MHz |
+| Full FPGA logic elements | 27,045 |
+| Full FPGA maximum reported frequency | 49.82 MHz |
+| LST speed loop test | 100,000 blank-image detections |
+| LST total runtime | 295,916,876 cycles ≈ 5.92 seconds at 50 MHz |
+
+### One-Line Summary
+
+The final FPGA implementation achieved **100% recognition correctness** with a measured inference latency of only **3,098 cycles**, while successfully validating the design through simulation, synthesis, FPGA board execution, and a 100,000-iteration speed-loop test.
+
+---
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#overview)
@@ -541,6 +572,5 @@ At 50 MHz, this corresponds to approximately:
 
 ## 👥 Authors
 
-- Your Name — FPGA acceleration, RTL optimization, software integration, validation
-- Team Member Name — add role here
-- Team Member Name — add role here
+-Yovel Mentch
+-Michael Itskovitch
