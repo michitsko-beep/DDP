@@ -14,8 +14,6 @@ The main objective was to reduce inference latency by accelerating the compute-h
 
 ## 📊 Measured Results
 
-### Before vs. After Acceleration
-
 The most important evaluation criterion in this project is the performance improvement achieved by hardware acceleration.
 
 The table below compares the baseline implementation (before acceleration) against the FPGA-accelerated implementation (after acceleration).
