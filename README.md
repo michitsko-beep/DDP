@@ -74,7 +74,7 @@ The FPGA-accelerated design also preserved functional correctness.
 ### One-Line Summary
 
 The final FPGA implementation achieved **100% recognition correctness** with a measured inference latency of only **3,098 cycles**, while successfully validating the design through simulation, synthesis, FPGA board execution, and a 100,000-iteration speed-loop test.
-
+---
 ---
 
 ## 📋 Table of Contents
