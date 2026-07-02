@@ -12,28 +12,75 @@ The system receives a sign-language image, processes it through convolution, poo
 
 The main objective was to reduce inference latency by accelerating the compute-heavy neural-network stages in hardware, while preserving full functional correctness on both simulation and real FPGA execution.
 
-### Key Results
+## 📊 Measured Results
+
+### Before vs. After Acceleration
+
+The most important evaluation criterion in this project is the performance improvement achieved by hardware acceleration.
+
+The table below compares the baseline implementation (before acceleration) against the FPGA-accelerated implementation (after acceleration).
+
+> **Note:**  
+> The accelerated values below were measured directly from the FPGA performance run (`-itr 1`).  
+> If baseline software-only / non-accelerated cycle counts are available, they should be added in the **Before Acceleration** column.
+
+| Stage | Before Acceleration (cycles) | After Acceleration (cycles) | Speedup |
+|---|---:|---:|---:|
+| Conv0 | TBD | 1,147 | TBD |
+| Pool0 | TBD | 570 | TBD |
+| Conv1 | TBD | 293 | TBD |
+| Pool1 | TBD | 273 | TBD |
+| Linear0 | TBD | 273 | TBD |
+| Linear1 | TBD | 253 | TBD |
+| Select / ArgMax | TBD | 289 | TBD |
+| **Total** | **TBD** | **3,098** | **TBD** |
+
+### Accelerated FPGA Performance Summary
+
+From the FPGA single-detection performance run, the measured per-stage cycle counts were:
+
+- **Conv0:** 1,147 cycles
+- **Pool0:** 570 cycles
+- **Conv1:** 293 cycles
+- **Pool1:** 273 cycles
+- **Linear0:** 273 cycles
+- **Linear1:** 253 cycles
+- **Select / ArgMax:** 289 cycles
+- **Total:** 3,098 cycles
+
+### Functional Output
+
+The FPGA-accelerated design also preserved functional correctness.
+
+| Test Type | Result |
+|---|---|
+| Single FPGA detection output | `h` |
+| FPGA functional success | 100% |
+| FPGA functional detected sentence | `have a great weekend` |
+| Simulation functional detected sentence | `we are the champions` |
+
+### Synthesis and Timing Results
 
 | Metric | Result |
 |---|---:|
-| Simulation success rate | 100% |
-| Simulation detected text | `we are the champions` |
-| Simulation single-inference latency | 3,106 cycles |
-| FPGA success rate | 100% |
-| FPGA detected text | `have a great weekend` |
-| FPGA single-inference latency | 3,098 cycles |
 | SLRX synthesis logic elements | 15,075 |
 | SLRX synthesis achieved frequency | 51.46 MHz |
 | Full FPGA logic elements | 27,045 |
+| Full FPGA applied clock target | 50 MHz |
 | Full FPGA maximum reported frequency | 49.82 MHz |
-| LST speed loop test | 100,000 blank-image detections |
-| LST total runtime | 295,916,876 cycles ≈ 5.92 seconds at 50 MHz |
+
+### LST / Speed Loop Test
+
+| Metric | Result |
+|---|---:|
+| Number of blank-image detections | 100,000 |
+| Total measured cycles | 295,916,876 cycles |
+| Runtime at 50 MHz | ~5.92 seconds |
 
 ### One-Line Summary
 
 The final FPGA implementation achieved **100% recognition correctness** with a measured inference latency of only **3,098 cycles**, while successfully validating the design through simulation, synthesis, FPGA board execution, and a 100,000-iteration speed-loop test.
 
----
 ---
 
 ## 📋 Table of Contents
