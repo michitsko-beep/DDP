@@ -358,6 +358,7 @@ The SLRX synthesis count includes mainly the accelerator subsystem, while the fu
 | Runtime at 50 MHz | ~5.92 seconds |
 
 The LST test confirms that the FPGA implementation can repeatedly execute inference logic without being dominated by UART image-loading overhead.
+<img width="480" height="640" alt="IMG_1716" src="https://github.com/user-attachments/assets/0ccc3b4b-f13c-4a89-85fc-c61db523707f" />
 
 ---
 
