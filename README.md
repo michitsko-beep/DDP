@@ -24,29 +24,25 @@ The table below compares the baseline implementation (before acceleration) again
 > The accelerated values below were measured directly from the FPGA performance run (`-itr 1`).  
 > If baseline software-only / non-accelerated cycle counts are available, they should be added in the **Before Acceleration** column.
 
-| Stage | Before Acceleration (cycles) | After Acceleration (cycles) | Speedup |
-|---|---:|---:|---:|
-| Conv0 | TBD | 1,147 | TBD |
-| Pool0 | TBD | 570 | TBD |
-| Conv1 | TBD | 293 | TBD |
-| Pool1 | TBD | 273 | TBD |
-| Linear0 | TBD | 273 | TBD |
-| Linear1 | TBD | 253 | TBD |
-| Select / ArgMax | TBD | 289 | TBD |
-| **Total** | **TBD** | **3,098** | **TBD** |
+The table below compares the end-to-end inference pipeline before and after FPGA acceleration.
 
-### Accelerated FPGA Performance Summary
+| Stage | Before Acceleration (cycles) | After FPGA Acceleration (cycles) | 
+|---|---:|---:|
+| Conv0 | 1,430,771 | 1,147 | 
+| Pool0 | 1,187 | 570 | 
+| Conv1 | 187,059 | 293 | 
+| Pool1 | 611 | 273 |
+| Linear0 | 61,811 | 273 | 
+| Linear1 | 65,987 | 253 | 
+| Select / ArgMax | 1,243 | 289 |
+| **Total** | **1,748,669** | **3,098** | 
 
-From the FPGA single-detection performance run, the measured per-stage cycle counts were:
+The FPGA-accelerated implementation reduced the full inference latency from **1,748,669 cycles** to **3,098 cycles**, achieving an overall speedup of approximately **564.45×** while preserving **100% functional correctness**.
 
-- **Conv0:** 1,147 cycles
-- **Pool0:** 570 cycles
-- **Conv1:** 293 cycles
-- **Pool1:** 273 cycles
-- **Linear0:** 273 cycles
-- **Linear1:** 253 cycles
-- **Select / ArgMax:** 289 cycles
-- **Total:** 3,098 cycles
+At a 50 MHz FPGA clock, the accelerated inference latency is:
+
+```text
+3,098 / 50,000,000 ≈ 61.96 microseconds per inference
 
 ### Functional Output
 
@@ -75,7 +71,7 @@ The FPGA-accelerated design also preserved functional correctness.
 |---|---:|
 | Number of blank-image detections | 100,000 |
 | Total measured cycles | 295,916,876 cycles |
-| Runtime at 50 MHz | ~5.92 seconds |
+| Runtime at 50 MHz | ~6.19 seconds |
 
 ### One-Line Summary
 
@@ -358,6 +354,8 @@ The SLRX synthesis count includes mainly the accelerator subsystem, while the fu
 | Runtime at 50 MHz | ~5.92 seconds |
 
 The LST test confirms that the FPGA implementation can repeatedly execute inference logic without being dominated by UART image-loading overhead.
+
+
 <img width="480" height="640" alt="IMG_1716" src="https://github.com/user-attachments/assets/0ccc3b4b-f13c-4a89-85fc-c61db523707f" />
 
 ---
@@ -621,4 +619,5 @@ At 50 MHz, this corresponds to approximately:
 ## 👥 Authors
 
 -Yovel Mentch
+
 -Michael Itskovitch
