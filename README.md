@@ -39,7 +39,6 @@ The FPGA-accelerated implementation reduced the full inference latency from **1,
 
 At a 50 MHz FPGA clock, the accelerated inference latency is:
 
-```text
 3,098 / 50,000,000 ≈ 61.96 microseconds per inference
 
 ### Functional Output
